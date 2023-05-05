@@ -98,7 +98,9 @@ $connection = mysqli_connect("127.0.0.1", "mariadb", "databasePassword123", "db_
 
 
 //$_POST["message"] content is: [       Hi! My name is "Luan"!       ]
-$messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "STRING", array("allowEmpty"=>false), $connection);
+$messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "STRING", array(
+    "allowEmpty"=>false
+    ), $connection);
 
 //$messageToSend content is:    [      Hi! My name is \"Luan\"!      ]
 
