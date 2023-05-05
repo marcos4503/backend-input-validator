@@ -81,7 +81,7 @@ $messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "
 
 
 
-//$messageToSend content is: [       Hi! My name is \"Luan\"!       ]
+//$messageToSend content is:    [      Hi! My name is \"Luan\"!      ]
 
 ?>
 ```
