@@ -46,10 +46,10 @@ if (is_null($nickname) == true || is_null($age) == true)
 
 Now let's understand the code! To validate a value using this library, you must call method `GetHttpFieldValueIfIsValid()` and then pass the following parameters...
 
-- The value. You must pass `$_POST[]` or `$_GET[]`, including the name of the POST/GET field you expect to get the value.
-- The type of value you expect to get from this field. Of course the value is always a text value, however sometimes we expect content of a certain type. For example, in an Age field, we expect a numerical value only, so it is necessary to inform the type of value you expect from this field. If you inform that you expect a value of type `INT`, and the field contains a text, it will not be considered valid by the library. Currently, the value types supported by the library are `STRING`, `INT`, `FLOAT`, and `BOOL`.
-- The Validation Parameters. They act as "rules" that you tell method `GetHttpFieldValueIfIsValid()` to take into account in validation. For example, Parameter `"allowEmpty"=>false` will cause an empty value to be considered invalid, Parameter `"allowLetters"=>false` will cause a value that contains letters to be considered invalid, and so on. Later you will see a table with all Validation Parameters supported by this library.
-- We will talk about this parameter later in this documentation...
+- <b>1st</b> - The value. You must pass `$_POST[]` or `$_GET[]`, including the name of the POST/GET field you expect to get the value.
+- <b>2nd</b> - The type of value you expect to get from this field. Of course the value is always a text value, however sometimes we expect content of a certain type. For example, in an Age field, we expect a numerical value only, so it is necessary to inform the type of value you expect from this field. If you inform that you expect a value of type `INT`, and the field contains a text, it will not be considered valid by the library. Currently, the value types supported by the library are `STRING`, `INT`, `FLOAT`, and `BOOL`.
+- <b>3rd</b> - The Validation Parameters. They act as "rules" that you tell method `GetHttpFieldValueIfIsValid()` to take into account in validation. For example, Parameter `"allowEmpty"=>false` will cause an empty value to be considered invalid, Parameter `"allowLetters"=>false` will cause a value that contains letters to be considered invalid, and so on. Later you will see a table with all Validation Parameters supported by this library.
+- <b>4th</b> - We will talk about this parameter later in this documentation...
 
 After calling this method and informing all these parameters, it can return you one of the following things...
 
