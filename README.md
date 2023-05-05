@@ -30,6 +30,8 @@ It was with these problems in mind that this library was created. It was created
 This method has the task of validating inputs that arrive through GET and POST. It is quite easy to use this method. See sample code below...
 
 ```php
+<?php
+
 //Receive the processed inputs...
 $nickname = InputValidator::GetHttpFieldValueIfIsValid($_POST["nickname"], "STRING", array("allowEmpty"=>false, "allowNumbers"=>false), null);
 $age = InputValidator::GetHttpFieldValueIfIsValid($_POST["age"], "INT", array("allowEmpty"=>false, "minNumberValue"=>13), null);
@@ -42,6 +44,8 @@ if (is_null($nickname) == false && is_null($age) == false){
 }
 if (is_null($nickname) == true || is_null($age) == true)
     //... show the invalid inputs error...
+
+?>
 ```
 
 Now let's understand the code! To validate a value using this library, you must call method `GetHttpFieldValueIfIsValid()` and then pass the following parameters...
@@ -58,9 +62,29 @@ After calling this method and informing all these parameters, it can return you 
 
 So, basically if the method `GetHttpFieldValueIfIsValid()` returns you the value of `$_POST[]`/`$_GET[]`, it means that the value is valid, but if the method returns you `NULL`, it means that the value of `$_POST[]`/`$_GET[]` was invalid.
 
-<h3>a</h3>
+<h3>Now, let's talk about the 4th parameter...</h3>
 
-a
+As you may know, if you plan to use input sent from a client in an SQL query, you must escape the string. For this we normally use PHP `mysqli_real_escape_string()` method. Here comes the 4th parameter of method `GetHttpFieldValueIfIsValid()`!
+
+If you created a connection to a MySQL or MariaDB database using `mysqli_connect()` you should have a variable resulting from the connection. If you pass your connection to the 4th parameter of method `GetHttpFieldValueIfIsValid()`, it will already return you an automatically escaped string, IF the string is considered valid! See example below...
+
+```php
+<?php
+
+//Do connection to MySQL/MariaDB
+$connection = mysqli_connect("127.0.0.1", "mariadb", "databasePassword123", "db_name", "3306");
+
+
+
+//$_POST["message"] content is: [       Hi! My name is "Luan"!       ]
+$messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "STRING", array("allowEmpty"=>false), $connection);
+
+
+
+//$messageToSend content is: [       Hi! My name is \"Luan\"!       ]
+
+?>
+```
 
 <h2>ReceiveUploadedFileFromClientIfIsValid()</h2>
 
