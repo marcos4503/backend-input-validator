@@ -58,7 +58,7 @@ After calling this method and informing all these parameters, it can return you 
 
 So, basically if the method `GetHttpFieldValueIfIsValid()` returns you the value of `$_POST[]`/`$_GET[]`, it means that the value is valid, but if the method returns you `NULL`, it means that the value of `$_POST[]`/`$_GET[]` was invalid.
 
-<h4>a</h4>
+<h3>a</h3>
 
 a
 
