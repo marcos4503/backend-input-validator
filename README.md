@@ -124,7 +124,7 @@ These are all validation parameters supported by method `GetHttpFieldValueIfIsVa
 | allowSpace          | STRING        | Defines if the Field can or cannot have spaces. Requires a `Bool` value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | allowLineBreak      | STRING        | Defines if the Field can or cannot have line breaks. Requires a `Bool` value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | specialCharsAllowed | STRING        | Defines whether the Field should allow special characters, and if so, which characters will be allowed. You can use the value "none" to not allow any special characters, for example: '"specialCharsAllowed"=>"none"'. If you only want to allow some special characters, you can enter them in a list using the character "," as a separator, for example '"specialCharsAllowed"=>"@,#,&"'. If you want to include the "," character in this list of allowed characters, instead of typing the "," character, type the word "comma". Requires a `String` value. |
-| customRegex         | STRING        | With this parameter you can define a custom Regex that will be used together with the other Validation Parameters to validate the Field. The Regex must be in the format "/regex/". Without a Flag letter at the end. You can use a regex when you want the field to be validated to also obey a certain form or pattern. Requires a `String` value.                                                                                                                                                                                                              |
+| customRegex         | STRING        | With this parameter you can define a custom Regex that will be used together with the other Validation Parameters to validate the Field. The Regex must be in the format "/regex/". Without a Flag letter at the end. For example '"customRegex"=>"/^[0-9]*$/"'. You can use a regex when you want the field to be validated to also obey a certain form or pattern. Requires a `String` value.                                                                                                                                                                   |
 | minNumberValue      | INT or FLOAT  | Defines the minimum value (in numeral) that is allowed in the Field. Requires a `Int` or `Float` value.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | maxNumberValue      | INT or FLOAT  | Defines the maximum value (in numeral) that is allowed in the Field. Requires a `Int` or `Float` value.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | allowNumberZero     | INT or FLOAT  | Defines if the zero numeral should be allowed or not in the Field. Requires a `Bool` value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -136,7 +136,44 @@ If you have a validation parameter suggestion, please send it through the "<b>Is
 
 <h3>Some quick Regex!</h3>
 
+Before we move on to the `ReceiveUploadedFileFromClientIfIsValid()` method, here are some quick Regex that can be used to validate Values that come out of commonly used Inputs in HTML such as "&lt;input type="email" /&gt;", "&lt;input type="date" /&gt;" etc!
 
+```html
+<!-- DATE -->
+<input type="date" />
+<!-- produces values formatted as "YYYY-MM-DD" -->
+<!-- /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/ -->
+
+<!-- DATETIME-LOCAL -->
+<input type="datetime-local" />
+<!-- produces values formatted as "YYYY-MM-DDTHH:MM" -->
+<!-- /(19|20)[0-9][0-9]-(0[0-9]|1[0-2])-(0[1-9]|([12][0-9]|3[01]))T([01][0-9]|2[0-3]):[0-5][0-9]/ -->
+
+<!-- EMAIL -->
+<input type="email" />
+<!-- produces values formatted as "account@example.com" -->
+<!-- /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ -->
+
+<!-- MONTH -->
+<input type="month" />
+<!-- produces values formatted as "YYYY-MM" -->
+<!-- /([12]\d{3}-(0[1-9]|1[0-2]))/ -->
+
+<!-- TIME -->
+<input type="time" />
+<!-- produces values formatted as "HH:MM" -->
+<!-- /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/ -->
+
+<!-- URL -->
+<input type="url" />
+<!-- produces values formatted as "https://domain.com/folder/page" -->
+<!-- /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/ -->
+
+<!-- WEEK -->
+<input type="week" />
+<!-- produces values formatted as "YYYY-WNN" -->
+<!-- /^(\d{4})-W(0[1-9]|[1-4][0-9]|5[0-3])$/ -->
+```
 
 <h2>ReceiveUploadedFileFromClientIfIsValid()</h2>
 
