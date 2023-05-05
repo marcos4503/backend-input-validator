@@ -88,7 +88,7 @@ $age = InputValidator::GetHttpFieldValueIfIsValid($_POST["age"], "INT", array(
 
 As you may know, if you plan to use input sent from a client in an SQL query, you must escape the string. For this we normally use PHP `mysqli_real_escape_string()` method. Here comes the 4th parameter of method `GetHttpFieldValueIfIsValid()`!
 
-If you created a connection to a MySQL or MariaDB database using `mysqli_connect()` you should have a variable resulting from the connection. If you pass your connection to the 4th parameter of method `GetHttpFieldValueIfIsValid()`, it will already return you an automatically escaped string, IF the string is considered valid! See example below...
+If you created a connection to a MySQL or MariaDB database using `mysqli_connect()` you should have a variable resulting from the connection. If you pass your connection to the 4th parameter of method `GetHttpFieldValueIfIsValid()`, it will already return you an automatically escaped string, <b>**IF**</b> the string is considered valid! See example below...
 
 ```php
 <?php
@@ -107,7 +107,7 @@ $messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "
 ?>
 ```
 
-<b>Remembering that</b>, this 4th parameter is completely optional. If you just inform `NULL` for this 4th parameter, method `GetHttpFieldValueIfIsValid()` will return you a normal string, without escaping it. It will just do validation work only.
+<b>Remembering</b> that, this 4th parameter is completely **optional**. If you just inform `NULL` for this 4th parameter, method `GetHttpFieldValueIfIsValid()` will return you a normal string, without escaping it. It will just do the normal job of validating the input, as in the examples above in this documentation.
 
 <h2>ReceiveUploadedFileFromClientIfIsValid()</h2>
 
