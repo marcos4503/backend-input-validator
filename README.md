@@ -33,8 +33,14 @@ This method has the task of validating inputs that arrive through GET and POST. 
 <?php
 
 //Receive the processed inputs...
-$nickname = InputValidator::GetHttpFieldValueIfIsValid($_POST["nickname"], "STRING", array("allowEmpty"=>false, "allowNumbers"=>false), null);
-$age = InputValidator::GetHttpFieldValueIfIsValid($_POST["age"], "INT", array("allowEmpty"=>false, "minNumberValue"=>13), null);
+$nickname = InputValidator::GetHttpFieldValueIfIsValid($_POST["nickname"], "STRING", array(
+            "allowEmpty"=>false,
+            "allowNumbers"=>false
+            ), null);
+$age = InputValidator::GetHttpFieldValueIfIsValid($_POST["age"], "INT", array(
+       "allowEmpty"=>false,
+       "minNumberValue"=>13
+       ), null);
 
 //Check if all fields is valid
 if (is_null($nickname) == false && is_null($age) == false){
@@ -62,6 +68,22 @@ After calling this method and informing all these parameters, it can return you 
 
 So, basically if the method `GetHttpFieldValueIfIsValid()` returns you the value of `$_POST[]`/`$_GET[]`, it means that the value is valid, but if the method returns you `NULL`, it means that the value of `$_POST[]`/`$_GET[]` was invalid.
 
+<b>Example:</b> Let's say we need to validate an age that is in `$_POST["age"]`. We want an empty entry or an age less than 13 to be considered INVALID. For that, we can use the following code...
+
+```php
+//Get the validation result into the "$age" variable
+$age = InputValidator::GetHttpFieldValueIfIsValid($_POST["age"], "INT", array(
+    "allowEmpty"=>false,
+    "minNumberValue"=>13
+    ), null);
+
+//If '$_POST["age"]' is   "  "          then "$age" will be   "NULL"...
+//If '$_POST["age"]' is   "24"          then "$age" will be   "24"...
+//If '$_POST["age"]' is   "7"           then "$age" will be   "NULL"...
+//If '$_POST["age"]' is   "some text"   then "$age" will be   "NULL"...
+//and so on...
+```
+
 <h3>Now, let's talk about the 4th parameter...</h3>
 
 As you may know, if you plan to use input sent from a client in an SQL query, you must escape the string. For this we normally use PHP `mysqli_real_escape_string()` method. Here comes the 4th parameter of method `GetHttpFieldValueIfIsValid()`!
@@ -75,16 +97,15 @@ If you created a connection to a MySQL or MariaDB database using `mysqli_connect
 $connection = mysqli_connect("127.0.0.1", "mariadb", "databasePassword123", "db_name", "3306");
 
 
-
 //$_POST["message"] content is: [       Hi! My name is "Luan"!       ]
 $messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "STRING", array("allowEmpty"=>false), $connection);
-
-
 
 //$messageToSend content is:    [      Hi! My name is \"Luan\"!      ]
 
 ?>
 ```
+
+<b>Remembering that</b>, this 4th parameter is completely optional. If you just inform `NULL` for this 4th parameter, method `GetHttpFieldValueIfIsValid()` will return you a normal string, without escaping it. It will just do validation work only.
 
 <h2>ReceiveUploadedFileFromClientIfIsValid()</h2>
 
