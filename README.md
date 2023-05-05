@@ -97,6 +97,7 @@ If you created a connection to a MySQL or MariaDB database using `mysqli_connect
 $connection = mysqli_connect("127.0.0.1", "mariadb", "databasePassword123", "db_name", "3306");
 
 
+//Do the validation of $_POST["message"] to get a escaped string if the value from it is valid...
 //$_POST["message"] content is: [       Hi! My name is "Luan"!       ]
 $messageToSend = InputValidator::GetHttpFieldValueIfIsValid($_POST["message"], "STRING", array(
     "allowEmpty"=>false
