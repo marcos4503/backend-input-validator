@@ -207,6 +207,8 @@ $photo = InputValidator::ReceiveUploadedFileFromClientIfIsValid($_FILES["profile
 //and so on...
 ```
 
+<b>NOTE:</b> After method `ReceiveUploadedFileFromClientIfIsValid()` moves the valid file to the destination directory, the filename is retained. Therefore, after receiving the path to the newly uploaded file, you should rename it to a unique name so that if another file with the same name is uploaded to your site, it will not overwrite an existing file when moved to the same destination directory!
+
 <h3>Validation Parameters</h3>
 
 These are all validation parameters supported by method `ReceiveUploadedFileFromClientIfIsValid()` at the moment.
