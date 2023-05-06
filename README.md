@@ -207,4 +207,48 @@ $photo = InputValidator::ReceiveUploadedFileFromClientIfIsValid($_FILES["profile
 //and so on...
 ```
 
+<h3>Validation Parameters</h3>
+
+These are all validation parameters supported by method `ReceiveUploadedFileFromClientIfIsValid()` at the moment.
+
+| Parameter           | Description                                                                                                                                                                                                                                                    |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| allowedExtensions   | Defines the allowed extensions for the uploaded file in the Field. To inform the allowed extensions, you must pass a list that uses the character "," as a separator. For example: '"allowedExtensions"=>"mp4,txt,cs,mp3,png,jpg"'. Requires a `String` value. |
+| mustBeRealImageFile | Determines whether the uploaded file should be a real image file. Requires a `Bool` value                                                                                                                                                                      |
+| maxFileSizeInKb     | Defines the maximum valid size for the uploaded file. The size is given in Kibibytes (bytes / 1024). Requires a `Int` value.                                                                                                                                   |
+
+If you have a validation parameter suggestion, please send it through the "<b>Issues</b>" tab, your suggestion will be very welcome!
+
+That's all you need to understand about the library! :)
+
 # How to use?
+
+First you need to clone this repository. Open the downloaded file and go to the "Backend-Input-Validator-Source" folder then copy the "backend-input-validator.php" file and place it somewhere on your website.
+
+The next step is to reference the library in your PHP script so that you can use the library's code within your PHP code. To do this, place the code below at the beginning of your PHP scripts where you plan to use this library. But remember to change the path to correctly reference the PHP library file!
+
+```php
+<?php
+
+include_once("../../backend-input-validator.php");
+
+?>
+```
+
+# Support projects like this
+
+If you liked this Library and found it useful for your projects, please consider making a donation (if possible). This would make it even more possible for me to create and continue to maintain projects like this, but if you cannot make a donation, it is still a pleasure for you to use it! Thanks! 😀
+
+<br>
+
+<p align="center">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=MVDJY3AXLL8T2" target="_blank">
+        <img src="Backend-Input-Validator-Source/Resources/paypal-donate.png" alt="Donate" />
+    </a>
+</p>
+
+<br>
+
+<p align="center">
+Created with ❤ by Marcos Tomaz
+</p>
