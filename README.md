@@ -177,6 +177,21 @@ Before we move on to the `ReceiveUploadedFileFromClientIfIsValid()` method, here
 
 <h2>ReceiveUploadedFileFromClientIfIsValid()</h2>
 
+Finally we come to method `ReceiveUploadedFileFromClientIfIsValid()`! This method has the incredible task of validating files uploaded by UPLOAD (available through `$_FILES[]`) to your PHP Backend.
+
+This method works VERY similarly to method `GetHttpFieldValueIfIsValid()`, with a few minor differences, so if you haven't read the explanation of method `GetHttpFieldValueIfIsValid()` above, I strongly recommend that you read it before proceeding.
+
+To validate a uploaded file using this library, you must call method `ReceiveUploadedFileFromClientIfIsValid()` and then pass the following parameters...
+
+- <b>1st</b> - The file to be validated. You must pass `$_FILES[]`, including the name of the HTTP field that the file was uploaded.
+- <b>2nd</b> - Here, you must pass an **Absolute Path** to the directory you want the uploaded file be moved to, if it passes validation.
+- <b>3rd</b> - The Validation Parameters. Here you must inform the Validation Parameters you want to use to validate the file, exactly as you saw in the explanation on how to use the `GetHttpFieldValueIfIsValid()` method. The difference is that the `ReceiveUploadedFileFromClientIfIsValid()` method uses different Validation Parameters. You'll see them all just below.
+
+After calling this method and informing all these parameters, it can return you one of the following things...
+
+- <b>NULL</b> - The method will return a `NULL` value if the file that you validated did not pass the validation, taking into account the Validation Parameters that you entered.
+- <b>FILE PATH</b> - If the file was validated and passed validation, it will be automatically moved to the destination directory informed in the 2nd parameter of the method and the path to the validated uploaded file will be returned to you!
+
 a
 
 # How to use?
