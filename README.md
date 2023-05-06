@@ -192,6 +192,19 @@ After calling this method and informing all these parameters, it can return you 
 - <b>NULL</b> - The method will return a `NULL` value if the file that you validated did not pass the validation, taking into account the Validation Parameters that you entered.
 - <b>FILE PATH</b> - If the file was validated and passed validation, it will be automatically moved to the destination directory informed in the 2nd parameter of the method and the path to the validated uploaded file will be returned to you!
 
-a
+<b>Example:</b> Let's say we need to validate an uploaded file that is in `$_FILES[profilePhoto]`. We need the file extension to be just PNG or JPG, the maximum size should be 5MB. We can use the following code...
+
+```php
+//Get the validation result into the "$photo" variable
+$photo = InputValidator::ReceiveUploadedFileFromClientIfIsValid($_FILES["profilePhoto"], "/var/www/domain.com/photos", array(
+         "allowedExtensions"=>"png,jpg",
+         "mustBeRealImageFile"=>true,
+         "maxFileSizeInKb"=>5000
+         ), null);
+
+//If '$_FILES["profilePhoto"]' is a PNG image with -5MB then "$photo" will be "/var/www/domain.com/photos/myPhoto233.png" (VALID)...
+//If '$_FILES["profilePhoto"]' is a BMP image then "$photo" will be "NULL" (INVALID)...
+//and so on...
+```
 
 # How to use?
